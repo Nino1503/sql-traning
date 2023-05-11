@@ -1,9 +1,10 @@
 question one 
-
-select orders.orderid,orders.orderdate,customers.customername,customers.address,customers.postalcode,shippers.shippername,products.productname,orderdetails.quantity from customers
+select
+orders.orderid,orders.orderdate,customers.customername,customers.address,customers.postalcode,shippers.shippername,products.productname,orderdetails.quantity from customers
 join orders on orders.customerid=customers.customerid
 join shippers on shippers.shipperid=orders.shipperid
 join orderdetails on orderdetails.orderid=orders.orderid
+join products on products.productid=orderdetails.productid
 
 question two 
 
