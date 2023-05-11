@@ -64,6 +64,13 @@ Order by salestotal DESC
 
 question 8
 
+select SUBSTR(Orderdate, 6,2) as months, sum(orderdetails.quantity* price)as sales from customers 
+join orders on orders.customerid =customers.customerid
+join orderdetails on orderdetails.orderid = orders.orderid
+join products on products.productid =orderdetails.productid
+Group by months
+order by sales desc
+limit 1;
 
 question 9
 
@@ -75,7 +82,7 @@ Group by orders.orderdate
 Order by total desc
 
 
-question 10(incomplete)
+question 10
 
 select customers.customername , sum(orderdetails.quantity* price)as custsales from customers 
 join orders on orders.customerid =customers.customerid
@@ -83,3 +90,5 @@ join orderdetails on orderdetails.orderid = orders.orderid
 join products on products.productid =orderdetails.productid
 Group by customername
 order by custsales asc
+
+question 11
