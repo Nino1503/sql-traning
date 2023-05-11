@@ -41,14 +41,20 @@ Join suppliers on suppliers.supplierid=products.supplierid
 Group by suppliername
 Order by count(orders.orderid) DESC
 
-question 7
-
-Select productname,count(products.productid) from orders
+Select count (products.productname),suppliers.suppliername from orders
 join orderdetails on orderdetails.orderid=orders.orderid
 join products on products.productid=orderdetails.productid
 Join suppliers on suppliers.supplierid=products.supplierid
+Group by suppliername
+Order by count(orders.orderid) DESC
+
+question 7
+
+Select productname,count(orderdetails.quantity) from orders
+join orderdetails on orderdetails.orderid=orders.orderid
+join products on products.productid=orderdetails.productid
 Group by productname
-Order by count(products.productid) DESC
+Order by count(products.productname) DESC
 
 Select productname,count (orders.orderid) from orders
 join orderdetails on orderdetails.orderid=orders.orderid
@@ -62,7 +68,7 @@ question 8
 
 question 9
 
-Select orders.orderdate, count(orders.orderid) from orders
+Select sum (orderdetails.quantity), orders.orderdate from orders
 join orderdetails on orderdetails.orderid=orders.orderid
 join products on products.productid=orderdetails.productid
 Join suppliers on suppliers.supplierid=products.supplierid
