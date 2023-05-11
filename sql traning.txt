@@ -1,0 +1,78 @@
+question one 
+
+select orders.orderid,orders.orderdate,customers.customername,customers.address,customers.postalcode,shippers.shippername,products.productname,orderdetails.quantity from customers
+join orders on orders.customerid=customers.customerid
+join shippers on shippers.shipperid=orders.shipperid
+join orderdetails on orderdetails.orderid=orders.orderid
+
+question two 
+
+Select orders.orderid, products.productid,products.productname,shippers.shippername from products 
+join orderdetails on orderdetails.productid =products.productid
+join orders on orders.orderid=orderdetails.orderid
+join shippers on shippers.shipperid =orders.shipperid
+
+question three
+
+Select Count (products.productname),shippers.shippername from products 
+join orderdetails on orderdetails.productid =products.productid
+join orders on orders.orderid=orderdetails.orderid
+join shippers on shippers.shipperid =orders.shipperid 
+group by shippername
+
+question Four 
+
+SELECT customername
+FROM customers
+WHERE NOT customername LIKE 'son%'
+
+Question 5
+
+select count (orderdate)
+from orders 
+where orderdate LIKE '1997%'
+
+question 6
+
+Select count (orders.orderid),suppliers.suppliername from orders
+join orderdetails on orderdetails.orderid=orders.orderid
+join products on products.productid=orderdetails.productid
+Join suppliers on suppliers.supplierid=products.supplierid
+Group by suppliername
+Order by count(orders.orderid) DESC
+
+question 7
+
+Select productname,count(products.productid) from orders
+join orderdetails on orderdetails.orderid=orders.orderid
+join products on products.productid=orderdetails.productid
+Join suppliers on suppliers.supplierid=products.supplierid
+Group by productname
+Order by count(products.productid) DESC
+
+Select productname,count (orders.orderid) from orders
+join orderdetails on orderdetails.orderid=orders.orderid
+join products on products.productid=orderdetails.productid
+Join suppliers on suppliers.supplierid=products.supplierid
+Group by productname
+Order by count(orders.orderid) DESC
+
+question 8
+
+
+question 9
+
+Select orders.orderdate, count(orders.orderid) from orders
+join orderdetails on orderdetails.orderid=orders.orderid
+join products on products.productid=orderdetails.productid
+Join suppliers on suppliers.supplierid=products.supplierid
+Group by orders.orderdate
+Order by orderdate asc
+
+question 10(incomplete)
+
+select * from customers 
+join orders on orders.customerid =customers.customerid
+join orderdetails on orderdetails.orderid = orders.orderid
+join products on products.productid =orderdetails.productid
+
