@@ -28,8 +28,8 @@ WHERE NOT customername LIKE 'son%'
 
 Question 5
 
-select count (orderdate)
-from orders 
+select sum (orderdetails.quantity) from orders
+join orderdetails on orderdetails.orderid =orders.orderid
 where orderdate LIKE '1997%'
 
 question 6
