@@ -29,18 +29,20 @@ WHERE NOT customername LIKE 'son%'
 
 Question 5
 
-select sum (orderdetails.quantity) from orders
+select sum (orderdetails.quantity*price ) as sales from orders
 join orderdetails on orderdetails.orderid =orders.orderid
+join products on products.productid=orderdetails.productid
 where orderdate LIKE '1997%'
+
 
 question 6
 
-Select count (orders.orderid),suppliers.suppliername from orders
+Select sum (orderdetails.quantity) as totalproducts ,suppliers.suppliername from orders
 join orderdetails on orderdetails.orderid=orders.orderid
 join products on products.productid=orderdetails.productid
 Join suppliers on suppliers.supplierid=products.supplierid
 Group by suppliername
-Order by count(orders.orderid) DESC
+Order by totalproducts DESC
 
 Select count (products.productname),suppliers.suppliername from orders
 join orderdetails on orderdetails.orderid=orders.orderid
@@ -51,35 +53,33 @@ Order by count(orders.orderid) DESC
 
 question 7
 
-Select productname,count(orderdetails.quantity) from orders
-join orderdetails on orderdetails.orderid=orders.orderid
-join products on products.productid=orderdetails.productid
-Group by productname
-Order by count(products.productname) DESC
-
-Select productname,count (orders.orderid) from orders
+Select productname,sum(orderdetails.quantity *price) as salestotal from orders
 join orderdetails on orderdetails.orderid=orders.orderid
 join products on products.productid=orderdetails.productid
 Join suppliers on suppliers.supplierid=products.supplierid
 Group by productname
-Order by count(orders.orderid) DESC
+Order by salestotal DESC
+
+
 
 question 8
 
 
 question 9
 
-Select sum (orderdetails.quantity), orders.orderdate from orders
+Select orders.orderdate, sum(orderdetails.quantity*price)as total  from orders
 join orderdetails on orderdetails.orderid=orders.orderid
 join products on products.productid=orderdetails.productid
 Join suppliers on suppliers.supplierid=products.supplierid
 Group by orders.orderdate
-Order by orderdate asc
+Order by total desc
+
 
 question 10(incomplete)
 
-select * from customers 
+select customers.customername , sum(orderdetails.quantity* price)as custsales from customers 
 join orders on orders.customerid =customers.customerid
 join orderdetails on orderdetails.orderid = orders.orderid
 join products on products.productid =orderdetails.productid
-
+Group by customername
+order by custsales asc
